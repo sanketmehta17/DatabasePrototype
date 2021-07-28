@@ -3,22 +3,20 @@ package dbms;
 import dbms.metadata.TableMeta;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 
-public class Table {
-    private String name;
+import static dbms.Constants.databasesFolder;
 
+public class Table {
     private File file;
     private LinkedList<Row> rows;
     private TableMeta metaData;
 
-    public void create(String name, Database database) throws IOException {
-        this.name = name;
-        File tablesFolder = FileOperator.getOrCreateFolder(database.getFolder().getPath() + "/tables");
-        this.file = FileOperator.getOrCreateFile(tablesFolder.getPath()+ "/"+ name + ".txt");
+    public void create(TableMeta tableMeta) {
+        File tablesFolder = FileOperator.getOrCreateFolder(databasesFolder + "/" + tableMeta.getDbName() +  "/tables");
+        this.file = FileOperator.getOrCreateFile(tablesFolder.getPath()+ "/"+ tableMeta.getName() + ".txt");
         this.rows = new LinkedList<>();
-        this.metaData = new TableMeta(name, database.getMetaData());
+        this.metaData = tableMeta;
     }
 
     public void addRow(Row row) {
@@ -28,7 +26,5 @@ public class Table {
     public void delete() {
         this.file.delete();
     }
-
-
 
 }

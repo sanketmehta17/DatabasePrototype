@@ -1,9 +1,9 @@
 package dbms;
 
 import dbms.metadata.DatabaseMeta;
+import dbms.metadata.TableMeta;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +11,6 @@ import static dbms.Constants.databasesFolder;
 
 
 public class Database {
-    private String name;
     private File folder;
     private Map<String, Table> tables;
     private DatabaseMeta metaData;
@@ -34,11 +33,15 @@ public class Database {
         return metaData;
     }
 
-    public void addTable(String name) throws IOException {
+    public void addTable(TableMeta tableMeta) {
+        if (tables.containsKey(tableMeta.getName())) {
+            System.out.println("Table Already exists");
+            return;
+        }
         Table table = new Table();
-        table.create(name, this);
-        tables.put(name, table);
-        metaData.addTable(name);
+        table.create(tableMeta);
+        tables.put(tableMeta.getName(), table);
+        metaData.addTable(tableMeta.getName());
     }
 
     public void deleteTable(String name) {

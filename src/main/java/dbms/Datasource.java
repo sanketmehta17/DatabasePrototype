@@ -29,8 +29,8 @@ public class Datasource {
         database.delete();
     }
 
-    public void getDatabase(String name) {
-        databases.get(name);
+    public Boolean getDatabase(String name) {
+        return databases.get(name) != null;
     }
 
     public Database getCurrentDatabase() {

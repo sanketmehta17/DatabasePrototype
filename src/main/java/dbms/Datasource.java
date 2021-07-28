@@ -2,6 +2,7 @@ package dbms;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,16 +12,13 @@ public class Datasource {
     private String name;
     private final Map<String, Database> databases = new HashMap<>();
     private Database currentDatabase;
-    public void connect() throws IOException {
-        File databases = new File(databasesFolder);
-        if (!databases.exists()) {
-            databases.mkdir();
-        }
+    public void connect() {
+        FileOperator.createInitialFilesFolders();
     }
 
     public Database addDatabase(String name) {
         Database database = new Database();
-        database.create(name, databasesFolder);
+        database.create(name);
         databases.put(name, database);
         return database;
     }

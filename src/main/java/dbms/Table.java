@@ -1,28 +1,34 @@
 package dbms;
 
+import dbms.metadata.TableMeta;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class Table implements DatasourceEntity{
+public class Table {
     private String name;
+
     private File file;
     private LinkedList<Row> rows;
+    private TableMeta metaData;
 
-    @Override
-    public void create(String name, String basePath) throws IOException {
+    public void create(String name, Database database) throws IOException {
         this.name = name;
-        this.file = new File(basePath + "/tables/" +name+".txt");
-        this.file.createNewFile();
+        File tablesFolder = FileOperator.getOrCreateFolder(database.getFolder().getPath() + "/tables");
+        this.file = FileOperator.getOrCreateFile(tablesFolder.getPath()+ "/"+ name + ".txt");
         this.rows = new LinkedList<>();
+        this.metaData = new TableMeta(name, database.getMetaData());
     }
 
     public void addRow(Row row) {
         rows.addLast(row);
     }
 
-    @Override
     public void delete() {
         this.file.delete();
     }
+
+
+
 }

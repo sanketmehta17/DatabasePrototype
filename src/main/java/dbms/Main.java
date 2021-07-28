@@ -1,4 +1,5 @@
 package dbms;
+import parser.queryParser;
 
 import java.io.IOException;
 
@@ -15,5 +16,7 @@ public class Main {
         datasource.connect();
         Database db = datasource.addDatabase("Test");
         db.addTable("newTable");
+        queryParser queryParser = new queryParser();
+        queryParser.QueryParser();
     }
 }

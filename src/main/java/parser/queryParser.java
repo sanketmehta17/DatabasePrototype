@@ -10,11 +10,12 @@ public class queryParser implements Interface.parserInterface{
     queryValidator = new queryValidator();
   }
 
-  public static void main(String[] args) {
+  @Override
+  public void QueryParser() {
     System.out.println("Enter the query:");
     Scanner scanner = new Scanner(System.in);
     String string = scanner.nextLine();
-    queryParser queryParser = new queryParser();
     System.out.println(queryValidator.validateQuery(string));
   }
+
 }

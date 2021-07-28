@@ -14,6 +14,6 @@ public class Main {
         Datasource datasource = new Datasource();
         datasource.connect();
         Database db = datasource.addDatabase("Test");
-        db.addTable("test");
+        db.addTable("newTable");
     }
 }

@@ -1,12 +1,7 @@
 package dbms;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
-
-import static dbms.Constants.databasesFolder;
 
 public class Datasource {
     private String name;
@@ -29,8 +24,8 @@ public class Datasource {
         database.delete();
     }
 
-    public void getDatabase(String name) {
-        databases.get(name);
+    public Database getDatabase(String name) {
+        return databases.get(name);
     }
 
     public Database getCurrentDatabase() {

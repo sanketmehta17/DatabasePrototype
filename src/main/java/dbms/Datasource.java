@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Datasource {
-    private String name;
+    private String currentUser;
     private final Map<String, Database> databases = new HashMap<>();
     private Database currentDatabase;
     public void connect() {

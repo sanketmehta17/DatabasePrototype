@@ -54,4 +54,8 @@ public class Database {
     public void deleteTable(String name) {
         tables.remove(name);
     }
+
+    public Map<String, Table> getTables() {
+        return tables;
+    }
 }

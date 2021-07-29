@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Constants {
     public static final String runDirectoryBase = "src/applicationData";
+    public static final String logFile = "src/db.log";
+    public static final String sqlDump = "src/dump.sql";
     public static final String databasesFolder = runDirectoryBase + "/databases";
     public static final String metaDataFolder = runDirectoryBase+ "/metaData";
     public static final String databaseMetaDataFile = metaDataFolder + "/databaseMeta.txt";

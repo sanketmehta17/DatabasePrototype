@@ -3,6 +3,7 @@ package dbms;
 import dbms.metadata.TableMeta;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,4 +54,5 @@ public class Table {
         rows = stream(string.split(newLineDelimiter)).map(s -> new Row().fromString(s))
                 .collect(toCollection(LinkedList::new));
     }
+
 }

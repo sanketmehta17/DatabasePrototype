@@ -65,5 +65,8 @@ public class DatabaseMeta implements Meta {
         return String.join(delimiter, metaDataRow);
     }
 
+    public String toCreateString() {
+        return "create database "+ name;
+    }
 
 }

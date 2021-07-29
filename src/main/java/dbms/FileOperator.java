@@ -88,5 +88,14 @@ public class FileOperator {
         }
         return contents;
     }
+
+    public static void addToFile(String filePath, List<String> lines) {
+        try {
+            Path path = Paths.get(filePath);
+            Files.write(path, lines);
+        } catch (IOException e) {
+            System.out.println("add to file failed");
+        }
+    }
     private FileOperator() {}
 }

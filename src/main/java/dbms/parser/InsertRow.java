@@ -12,9 +12,8 @@ import static dbms.Constants.secondaryDelimiter;
 import static java.util.Objects.isNull;
 
 public class InsertRow extends Parser{
-    public InsertRow(Datasource datasource) throws Exception {
+    public InsertRow(Datasource datasource) {
         super(datasource);
-        validateCurrentDatabase();
     }
 
     @Override
@@ -45,6 +44,7 @@ public class InsertRow extends Parser{
     @Override
     protected void execute(Matcher matcher, String query) {
         try {
+            validateCurrentDatabase();
             Database currentDatabase = datasource.getCurrentDatabase();
             String tableName = matcher.group(1).trim();
             String columnNames = matcher.group(2);
@@ -66,7 +66,7 @@ public class InsertRow extends Parser{
             Row row = new Row(columns);
             table.addRow(row);
         } catch (Exception ex) {
-            System.out.println("Invalid query for insert");
+            System.out.println("Invalid options provided for insert.");
         }
     }
 }

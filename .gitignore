@@ -3,3 +3,6 @@ out/
 *.iml
 applicationData/
 target/
+*.log
+*.sql
+*.lck

@@ -1,6 +1,9 @@
 package dbms;
 
 
+import dbms.parser.Parser;
+import dbms.parser.UseDatabase;
+
 public class Main {
     public static void main(String args[]) {
         ValidateUser user = new ValidateUser();
@@ -10,5 +13,9 @@ public class Main {
         } else {
             System.out.println(">> Error in login <<");
         }
+        Datasource datasource = new Datasource();
+        Parser parser = new UseDatabase(datasource);
+        String query = "use data;";
+        System.out.println(parser.isValid(query));
     }
 }

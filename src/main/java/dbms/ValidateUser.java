@@ -26,7 +26,7 @@ public class ValidateUser {
       String credFileContent = new Scanner(credFile).useDelimiter("\\Z").next();
       String[] credFileArray = credFileContent.split(newLineDelimiter);
       for (int i = 0; i < credFileArray.length; i++) {
-        String[] userInfo = credFileArray[0].split(pipeDelimiter);
+        String[] userInfo = credFileArray[i].split(pipeDelimiter);
         credMap.put(userInfo[0], userInfo[1]);
         mfaMap.put(userInfo[2], userInfo[3]);
       }

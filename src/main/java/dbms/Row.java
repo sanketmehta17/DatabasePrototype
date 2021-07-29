@@ -36,4 +36,8 @@ public class Row {
                 .map(s -> new Column(s)).collect(Collectors.toList());
         return this;
     }
+
+    public List<Column> getValues() {
+        return values;
+    }
 }

@@ -13,9 +13,8 @@ import java.util.regex.Matcher;
 
 public class CreateTable extends Parser{
 
-    public CreateTable(Datasource datasource) throws Exception {
+    public CreateTable(Datasource datasource) {
         super(datasource);
-        validateCurrentDatabase();
     }
 
     @Override
@@ -25,7 +24,12 @@ public class CreateTable extends Parser{
 
     @Override
     protected void execute(Matcher matcher, String query) {
-            String tableName = matcher.group(1).trim();
+        try {
+            validateCurrentDatabase();
+        } catch (Exception e) {
+            System.out.println("NO DB SELECTED");
+        }
+        String tableName = matcher.group(1).trim();
             Database currentDatabase = datasource.getCurrentDatabase();
             List<String> columns = List.of(matcher.group(2).split(" *, *"));
             List<ColumnMeta> columnMetaList = new ArrayList<>();

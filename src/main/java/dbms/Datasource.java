@@ -36,14 +36,13 @@ public class Datasource {
         for (String databaseMetaString: databasesMeta) {
             DatabaseMeta databaseMeta = new DatabaseMeta().fromString(databaseMetaString);
             List<TableMeta> tableMetasForThisDB = dbTableMap.get(databaseMeta.getName());
-            if(isNull(tableMetasForThisDB)) {
-                continue;
-            }
             Map<String, Table> tableMap = new HashMap<>();
-            for (TableMeta tableMeta: tableMetasForThisDB) {
-                Table table = new Table(tableMeta);
-                table.populate();
-                tableMap.put(table.getMetaData().getName(), table);
+            if(!isNull(tableMetasForThisDB)) {
+                for (TableMeta tableMeta: tableMetasForThisDB) {
+                    Table table = new Table(tableMeta);
+                    table.populate();
+                    tableMap.put(table.getMetaData().getName(), table);
+                }
             }
             databases.put(databaseMeta.getName(), new Database(tableMap, databaseMeta));
         }
@@ -73,5 +72,6 @@ public class Datasource {
 
     public void setCurrentDatabase(String dbName) {
         this.currentDatabase = databases.get(dbName);
+        System.out.println("Current database set to "+ currentDatabase.getMetaData().getName());
     }
 }

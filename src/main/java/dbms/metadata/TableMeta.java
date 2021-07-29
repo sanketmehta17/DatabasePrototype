@@ -15,6 +15,7 @@ public class TableMeta implements Meta{
     private String dbName;
     private Set<String> columns = null;
     private Map<String, ColumnMeta> columnMetaMap;
+
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Boolean locked = false;

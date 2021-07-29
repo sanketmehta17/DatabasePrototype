@@ -24,6 +24,7 @@ public class UseDatabase extends Parser{
         Database database = datasource.getDatabase(dbName);
         if (isNull(database)) {
             System.out.println("Database Not present");
+            return;
         }
         datasource.setCurrentDatabase(dbName);
     }

@@ -66,7 +66,7 @@ public class InsertRow extends Parser{
             Row row = new Row(columns);
             table.addRow(row);
         } catch (Exception ex) {
-            System.out.println("Invalid query for insert");
+            System.out.println("Invalid options provided for insert.");
         }
     }
 }

@@ -5,3 +5,4 @@ applicationData/
 target/
 *.log
 *.sql
+*.lck

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static java.util.Objects.isNull;
+
 
 public class Main {
 
@@ -36,7 +38,7 @@ public class Main {
 
     public static void displayUserMenu() throws Exception {
         System.out.println("1.Execute SQL operations");
-        System.out.println("2.Generate ERD");
+        System.out.println("2.Generate SQL DUMP");
         System.out.println("3. Log out");
         System.out.println("Please select your input");
         Scanner scanner = new Scanner(System.in);
@@ -50,8 +52,8 @@ public class Main {
             doParseAndExecute();
             displayUserMenu();
         } else if (menuInput.equals("2")) {
-            //TO DO ERD
-            System.out.println("You are in ERD");
+            SqlDump.getDump(datasource);
+            System.out.println("Dump is generated successfully");
             displayUserMenu();
         } else if (menuInput.equals("3")) {
             System.out.println("End of Program");
@@ -64,11 +66,16 @@ public class Main {
         Scanner scanner= new Scanner(System.in);
         String inputQuery = scanner.nextLine();
         logger.info(new QueryLog(inputQuery, Timestamp.from(Instant.now())).toString());
+        Boolean executed = false;
         for(int i=0;i<parserList.size();i++) {
             Parser parser = parserList.get(i);
             Boolean isValidQueryExecute = parser.isValid(inputQuery);
-            if(isValidQueryExecute)break;
+            if(isValidQueryExecute){
+                executed = true;
+                break;
+            }
         }
+        if(!executed) System.out.println("Invalid query");
     }
 
 }

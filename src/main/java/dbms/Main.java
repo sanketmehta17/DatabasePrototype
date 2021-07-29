@@ -20,7 +20,7 @@ public class Main {
     protected static Datasource datasource  = new Datasource();
 
     private static final List<Parser> parserList = Arrays.asList(new UseDatabase(datasource), new CreateDatabase(datasource),
-            new CreateTable(datasource), new InsertRow(datasource));
+            new CreateTable(datasource), new InsertRow(datasource), new DeleteTable(datasource));
 
     private static final Logger logger = CustomLogger.getLogger();
 

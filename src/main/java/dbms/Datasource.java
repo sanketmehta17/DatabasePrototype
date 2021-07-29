@@ -21,7 +21,8 @@ public class Datasource {
         for (String tableString: tableStrings) {
             TableMeta tableMeta = new TableMeta().fromString(tableString);
             if (!dbTableMetaMap.containsKey(tableMeta.getDbName())){
-                dbTableMetaMap.put(tableMeta.getDbName(), Arrays.asList(tableMeta));
+
+                dbTableMetaMap.put(tableMeta.getDbName(), new ArrayList<>(Arrays.asList(tableMeta)));
             } else {
                 dbTableMetaMap.get(tableMeta.getDbName()).add(tableMeta);
             }
@@ -73,5 +74,9 @@ public class Datasource {
     public void setCurrentDatabase(String dbName) {
         this.currentDatabase = databases.get(dbName);
         System.out.println("Current database set to "+ currentDatabase.getMetaData().getName());
+    }
+
+    public Map<String, Database> getDatabases() {
+        return databases;
     }
 }

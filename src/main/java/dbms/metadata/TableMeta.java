@@ -108,4 +108,16 @@ public class TableMeta implements Meta{
         uniqueColumns = fields.get(9).equals("null") ? null : stream(fields.get(7).split(escapeSequence + secondaryDelimiter)).collect(toList());
         return this;
     }
+
+    public String getColumnCreationString() {
+        List<String> columnCreationStringList = new ArrayList<>();
+        for(ColumnMeta columnMeta: columnMetaMap.values()) {
+            columnCreationStringList.add(columnMeta.getName()+ " "+ columnMeta.getType().toString());
+        }
+        return String.format("(%s)", String.join(",", columnCreationStringList));
+    }
+
+    public String toCreateString() {
+        return String.format("create table %s %s", name, getColumnCreationString());
+    }
 }

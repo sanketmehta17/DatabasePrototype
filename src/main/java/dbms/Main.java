@@ -1,11 +1,16 @@
 package dbms;
 
+import dbms.logger.CustomLogger;
+import dbms.logger.QueryLog;
 import dbms.parser.*;
 
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 
 public class Main {
@@ -14,6 +19,8 @@ public class Main {
 
     private static final List<Parser> parserList = Arrays.asList(new UseDatabase(datasource), new CreateDatabase(datasource),
             new CreateTable(datasource), new InsertRow(datasource));
+
+    private static final Logger logger = CustomLogger.getLogger();
 
     public static void main(String args[]) throws Exception {
         ValidateUser user = new ValidateUser();
@@ -56,7 +63,7 @@ public class Main {
         System.out.println(">> Please enter your query");
         Scanner scanner= new Scanner(System.in);
         String inputQuery = scanner.nextLine();
-
+        logger.info(new QueryLog(inputQuery, Timestamp.from(Instant.now())).toString());
         for(int i=0;i<parserList.size();i++) {
             Parser parser = parserList.get(i);
             Boolean isValidQueryExecute = parser.isValid(inputQuery);

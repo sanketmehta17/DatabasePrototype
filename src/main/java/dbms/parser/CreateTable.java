@@ -28,6 +28,7 @@ public class CreateTable extends Parser{
             validateCurrentDatabase();
         } catch (Exception e) {
             System.out.println("NO DB SELECTED");
+            return;
         }
         String tableName = matcher.group(1).trim();
             Database currentDatabase = datasource.getCurrentDatabase();

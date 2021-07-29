@@ -18,4 +18,6 @@ public class Constants {
     public static final String ternaryDelimiter = "|";
     public static final String newLineDelimiter = "\n";
     public static final String pipeDelimiter="\\|";
+    public static final String escapeSequence = "\\";
+
 }

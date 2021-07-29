@@ -13,13 +13,9 @@ import java.util.regex.Matcher;
 
 public class CreateTable extends Parser{
 
-    public CreateTable(Datasource datasource) {
+    public CreateTable(Datasource datasource) throws Exception {
         super(datasource);
-        try {
-            validateCurrentDatabase();
-        } catch (Exception e) {
-            System.out.println("Database not selected");
-        }
+        validateCurrentDatabase();
     }
 
     @Override

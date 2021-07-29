@@ -18,6 +18,6 @@ public class CreateDatabase extends Parser{
   @Override
   protected void execute(Matcher matcher, String query) {
     String databaseName = matcher.group(1).trim();
-    datasource.addDatabase(databaseName);
+    datasource.createDB(databaseName);
   }
 }

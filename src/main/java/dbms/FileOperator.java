@@ -3,9 +3,13 @@ package dbms;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
-import static dbms.Constants.mandatoryFiles;
-import static dbms.Constants.mandatoryFolders;
+import static dbms.Constants.*;
 
 public class FileOperator {
 
@@ -52,6 +56,37 @@ public class FileOperator {
         } catch (Exception e){
             System.out.println("Append Error");
         }
+    }
+
+    public static void updateFile(String filePath, String oldData, String updatedString) {
+        try {
+            Path path = Paths.get(filePath);
+            List<String> lines = Files.readAllLines(path);
+            int index=0;
+            for (String line: lines) {
+                if(line.equals(oldData)){
+                    break;
+                }
+                index++;
+            }
+            lines.set(index, updatedString);
+            Files.write(path, lines);
+        } catch (IOException e) {
+            System.out.println("Update error");
+        }
+
+    }
+
+
+    public static List<String> getFileContents(String filePath) {
+        List<String> contents = new ArrayList<>();
+        try {
+            Path path = Paths.get(filePath);
+            contents = Files.readAllLines(path);
+        } catch (IOException e) {
+            System.out.println("contentLoading Error");
+        }
+        return contents;
     }
     private FileOperator() {}
 }

@@ -18,8 +18,9 @@ public abstract class Parser {
         Matcher matcher = r.matcher(query);
         if(matcher.find()) {
             execute(matcher, query);
+            return true;
         }
-        return matcher.find();
+        return false;
     }
 
     void validateCurrentDatabase() throws Exception{

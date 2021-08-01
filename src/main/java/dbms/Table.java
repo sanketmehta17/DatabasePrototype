@@ -4,6 +4,8 @@ import dbms.metadata.TableMeta;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +45,16 @@ public class Table {
 
     public void delete() {
         this.file.delete();
+    }
+
+    public void deleteContent(){
+        try {
+            PrintWriter printWriter = new PrintWriter(this.file);
+            printWriter.print("");
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public String toDBString() {

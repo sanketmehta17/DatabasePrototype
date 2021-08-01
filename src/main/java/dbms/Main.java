@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static java.util.Objects.isNull;
 
 
 public class Main {
@@ -23,6 +22,9 @@ public class Main {
             new CreateTable(datasource), new InsertRow(datasource));
 
     private static final Logger logger = CustomLogger.getLogger();
+
+    protected static Transaction transaction = new Transaction(datasource,logger,parserList);
+
 
     public static void main(String args[]) throws Exception {
         ValidateUser user = new ValidateUser();
@@ -39,7 +41,8 @@ public class Main {
     public static void displayUserMenu() throws Exception {
         System.out.println("1.Execute SQL operations");
         System.out.println("2.Generate SQL DUMP");
-        System.out.println("3. Log out");
+        System.out.println("3.Execute a transaction");
+        System.out.println("4. Log out");
         System.out.println("Please select your input");
         Scanner scanner = new Scanner(System.in);
         String menuInput = scanner.nextLine();
@@ -56,6 +59,8 @@ public class Main {
             System.out.println("Dump is generated successfully");
             displayUserMenu();
         } else if (menuInput.equals("3")) {
+            transaction.startTransaction();
+        } else if (menuInput.equals("4")) {
             System.out.println("End of Program");
         }
     }

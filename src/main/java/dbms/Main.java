@@ -70,6 +70,9 @@ public class Main {
                 ERD.generateERD(datasource);
             }
             case "4" -> {
+                transaction.startTransaction();
+            }
+            case "5" -> {
                 System.out.println("End of Program");
             }
             default -> {

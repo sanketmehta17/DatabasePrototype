@@ -1,6 +1,5 @@
 package dbms;
 
-import dbms.logger.CustomLogger;
 import dbms.logger.QueryLog;
 import dbms.parser.*;
 

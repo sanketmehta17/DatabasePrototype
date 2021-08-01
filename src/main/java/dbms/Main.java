@@ -39,7 +39,8 @@ public class Main {
     public static void displayUserMenu() throws Exception {
         System.out.println("1.Execute SQL operations");
         System.out.println("2.Generate SQL DUMP");
-        System.out.println("3. Log out");
+        System.out.println("3.Generate ERD");
+        System.out.println("4. Log out");
         System.out.println("Please select your input");
         Scanner scanner = new Scanner(System.in);
         String menuInput = scanner.nextLine();
@@ -48,7 +49,33 @@ public class Main {
 
     public static void operationType(String menuInput) throws Exception {
 
-        if (menuInput.equals("1")) {
+        switch (menuInput) {
+            case "1" -> {
+                doParseAndExecute();
+                displayUserMenu();
+            }
+            case "2" -> {
+                SqlDump.getDump(datasource);
+                System.out.println("Dump is generated successfully");
+                displayUserMenu();
+            }
+            case "3" -> {
+                System.out.println("Enter database name");
+                Scanner scanner= new Scanner(System.in);
+                String dbName = scanner.nextLine();
+                datasource.setCurrentDatabase(dbName);
+                ERD.generateERD(datasource);
+            }
+            case "4" -> {
+                System.out.println("End of Program");
+            }
+            default -> {
+                System.out.println("Invalid choice. Please try again");
+                displayUserMenu();
+            }
+        }
+
+/*        if (menuInput.equals("1")) {
             doParseAndExecute();
             displayUserMenu();
         } else if (menuInput.equals("2")) {
@@ -57,7 +84,7 @@ public class Main {
             displayUserMenu();
         } else if (menuInput.equals("3")) {
             System.out.println("End of Program");
-        }
+        }*/
     }
 
     private static void doParseAndExecute() {

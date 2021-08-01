@@ -62,6 +62,10 @@ public class TableMeta implements Meta{
         return columnMetaMap;
     }
 
+    public String getPrimaryKey() {
+        return primaryKey;
+    }
+
     public Set<String> getColumns() {
         return columnMetaMap.keySet();
     }
@@ -78,6 +82,14 @@ public class TableMeta implements Meta{
         return  uniqueColumns.size() > 0 ? String.join(secondaryDelimiter, uniqueColumns): null;
     }
 
+    public void setPrimaryKey(String columnName) throws Exception {
+        if (!columnMetaMap.containsKey(columnName)) {
+            System.out.println("Column does not exist");
+            throw new Exception();
+        }
+        primaryKey = columnName;
+
+    }
 
     @Override
     public List<String> getOrder() {
